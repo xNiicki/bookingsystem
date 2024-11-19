@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
 
-Route::get('/register/{id}', Register::class)->name('register');
+Route::get('/register/{id}', Register::class)->name('register.course');
 
 Route::get('/login', AdminLogin::class)->name('login');
 

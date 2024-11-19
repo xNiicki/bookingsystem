@@ -20,7 +20,7 @@ class AdminLogin extends Component
         $this->validate();
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            return redirect()->route('admin');
+            return redirect()->route('admin.dashboard');
         }
 
         $this->addError('email', 'The provided credentials do not match our records.');

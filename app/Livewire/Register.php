@@ -33,6 +33,12 @@ class Register extends Component
     {
         $this->validate();
 
+        // Check if course is full
+        if ($this->course->isFullyBooked()) {
+            session()->flash('error', 'Sorry, this course is fully booked.');
+            return;
+        }
+
         // Create new customer
         $customer = Customer::create([
             'name' => $this->name,

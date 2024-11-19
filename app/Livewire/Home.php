@@ -16,18 +16,7 @@ class Home extends Component
             ->whereRaw("datetime(startDate) > datetime(?)", [$now])
             ->orderBy('startDate')
             ->orderBy('startTime')
-            ->get()
-            ->map(function ($course) {
-                return [
-                    'id' => $course->id,
-                    'name' => $course->name,
-                    'formattedDate' => Carbon::parse($course->startDate)->format('d.m.Y'),
-                    'formattedTime' => Carbon::parse($course->startTime)->format('H:i'),
-                    'dayName' => $course->dayName,
-                    'sessions' => $course->sessions,
-                ];
-            });
-
+            ->get();
 
         return view('livewire.home', [
             'courses' => $courses

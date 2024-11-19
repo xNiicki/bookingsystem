@@ -27,6 +27,11 @@
                             <i class="fas fa-users"></i> Courses
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('admin.addCourse') }}">
+                            <i class="fas fa-users"></i> Add Course
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

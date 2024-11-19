@@ -8,33 +8,23 @@
                 @foreach($courses as $course)
                     <div class="card mb-3">
                         <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="h5 mb-2">{{ $course['name'] }}</h3>
-                                    <div class="text-muted">
-                                        <i class="bi bi-calendar"></i>
-                                        {{ $course['dayName'] }} - {{ $course['formattedDate'] }}
-                                    </div>
-                                    <div class="text-muted">
-                                        <i class="bi bi-clock"></i>
-                                        {{ $course['formattedTime'] }}
-                                    </div>
-                                    <div class="small text-muted mt-1">
-                                        <i class="bi bi-collection"></i>
-                                        Number of sessions: {{ $course['sessions'] }}
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <button
-                                        href="/register/{{ $course['id'] }}"
-                                        wire:navigate
-                                        class="btn btn-primary"
-                                    >
-                                        <i class="bi bi-person-plus-fill me-2"></i>
-                                        Register
-                                    </button>
-                                </div>
+                            <h3 class="card-title">{{ $course->name }}</h3>
+                            <div class="text-muted mb-2">
+                                {{ $course->dayName }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
+                                at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}
                             </div>
+                            <div class="mb-2">
+                <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
+                    {{ $course->available_spots }} spots available
+                </span>
+                            </div>
+                            <button
+                                wire:click="register({{ $course->id }})"
+                                class="btn btn-primary"
+                                {{ $course->isFullyBooked() ? 'disabled' : '' }}
+                            >
+                                {{ $course->isFullyBooked() ? 'Fully Booked' : 'Register' }}
+                            </button>
                         </div>
                     </div>
                 @endforeach

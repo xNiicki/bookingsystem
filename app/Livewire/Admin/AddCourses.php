@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Livewire\Admin;
+
+use App\Models\Course;
+use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
+
+class AddCourses extends Component
+{
+    // Form Properties
+    public $name;
+    public $startDate;
+    public $startTime;
+    public $dayName;
+    public $sessions;
+
+    // Validation Rules
+    protected $rules = [
+        'name' => 'required|min:3|max:255',
+        'startDate' => 'required|date|after_or_equal:today',
+        'startTime' => 'required',
+        'dayName' => 'required|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
+        'sessions' => 'required|integer|min:1'
+    ];
+
+    // Custom Validation Messages
+    protected $messages = [
+        'startDate.after_or_equal' => 'The start date must be today or a future date.',
+        'dayName.in' => 'Please select a valid day of the week.'
+    ];
+
+    public function submit()
+    {
+        $this->validate();
+
+        try {
+            // Create new course
+            $course = Course::create([
+                'name' => $this->name,
+                'startDate' => $this->startDate,
+                'startTime' => $this->startTime,
+                'dayName' => $this->dayName,
+                'sessions' => $this->sessions
+            ]);
+
+            // Optional: Send email notification to admin
+            // Mail::to('admin@example.com')->send(new NewCourseCreated($course));
+
+            // Reset form
+            $this->reset();
+
+            // Show success message
+            session()->flash('message', 'Course created successfully!');
+
+        } catch (\Exception $e) {
+            session()->flash('error', 'Error creating course. Please try again.');
+            \Log::error('Course creation failed: ' . $e->getMessage());
+        }
+    }
+
+    public function resetForm()
+    {
+        $this->reset();
+        $this->resetValidation();
+    }
+
+    public function mount()
+    {
+        // Set default values if needed
+        $this->startDate = date('Y-m-d');
+    }
+
+    public function render()
+    {
+        return view('livewire.admin.add-courses')
+            ->layout('components.layouts.admin');
+    }
+}

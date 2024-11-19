@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.courses') }}">
+                        <a class="nav-link active" href="{{ route('admin.courses') }}">
                             <i class="fas fa-users"></i> Courses
                         </a>
                     </li>
@@ -32,6 +32,14 @@
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Admin</h1>
+                <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar">
+                    <i class="fas fa-bars">III</i>
+                </button>
+            </div>
 
             {{ $slot }}
 

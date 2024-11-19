@@ -5,6 +5,7 @@ use App\Livewire\Register;
 use App\Livewire\AdminLogin;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Courses;
+use App\Livewire\Admin\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::get('/login', AdminLogin::class)->name('login');
 Route::get('/admin', Dashboard::class)->name('admin.dashboard')->middleware('auth');
 
 Route::get('/admin/courses', Courses::class)->name('admin.courses')->middleware('auth');
+
+Route::get('/admin/course/{id}', Course::class)->name('admin.course')->middleware('auth');
 
 Route::post('/logout', function () {
     Auth::logout();

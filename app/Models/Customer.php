@@ -8,16 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'email',
         'phone'
     ];
 
-    public function courses()
+    /**
+     * Get the courses for the customer.
+     */
+    public function courses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'course_customer')
+            ->withTimestamps();
     }
 }

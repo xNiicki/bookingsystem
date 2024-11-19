@@ -6,16 +6,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// app/Models/Course.php
 class Course extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'startDate',
         'startTime',
         'dayName',
-        'sessions'
+        'sessions',
+        'capacity'
     ];
 
     protected $casts = [
@@ -23,8 +23,29 @@ class Course extends Model
         'startTime' => 'datetime',
     ];
 
-    public function customers()
+    /**
+     * Get the customers for the course.
+     */
+    public function customers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Customer::class);
+        return $this->belongsToMany(Customer::class, 'course_customer')
+            ->withTimestamps();
+    }
+
+    /**
+     * Check if course is fully booked
+     */
+    public function isFullyBooked(): bool
+    {
+        return $this->customers()->count() >= $this->capacity;
+    }
+
+    /**
+     * Get available spots
+     */
+    public function getAvailableSpotsAttribute(): int
+    {
+        return $this->capacity - $this->customers()->count();
     }
 }
+

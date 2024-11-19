@@ -86,6 +86,17 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="capacity" class="form-label">Maximum Capacity</label>
+                        <input type="number"
+                               class="form-control @error('capacity') is-invalid @enderror"
+                               id="capacity"
+                               wire:model="capacity"
+                               min="1">
+                        @error('capacity')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="d-grid gap-2">

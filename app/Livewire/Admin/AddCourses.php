@@ -14,6 +14,8 @@ class AddCourses extends Component
     public $startTime;
     public $dayName;
     public $sessions;
+    public $capacity;
+
 
     // Validation Rules
     protected $rules = [
@@ -21,7 +23,9 @@ class AddCourses extends Component
         'startDate' => 'required|date|after_or_equal:today',
         'startTime' => 'required',
         'dayName' => 'required|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
-        'sessions' => 'required|integer|min:1'
+        'sessions' => 'required|integer|min:1',
+        'capacity' => 'required|integer|min:1'  // Add this
+
     ];
 
     // Custom Validation Messages
@@ -41,7 +45,8 @@ class AddCourses extends Component
                 'startDate' => $this->startDate,
                 'startTime' => $this->startTime,
                 'dayName' => $this->dayName,
-                'sessions' => $this->sessions
+                'sessions' => $this->sessions,
+                'capacity' => $this->capacity
             ]);
 
             // Optional: Send email notification to admin

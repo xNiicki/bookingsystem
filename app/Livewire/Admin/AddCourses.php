@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Course;
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,6 +16,8 @@ class AddCourses extends Component
     public $dayName;
     public $sessions;
     public $capacity;
+    public $price;
+    public $description;
 
 
     // Validation Rules
@@ -46,7 +49,9 @@ class AddCourses extends Component
                 'startTime' => $this->startTime,
                 'dayName' => $this->dayName,
                 'sessions' => $this->sessions,
-                'capacity' => $this->capacity
+                'capacity' => $this->capacity,
+                'price' => $this->price,
+                'description' => $this->description
             ]);
 
             // Optional: Send email notification to admin
@@ -78,7 +83,8 @@ class AddCourses extends Component
 
     public function render()
     {
-        return view('livewire.admin.add-courses')
-            ->layout('components.layouts.admin');
+        return view('livewire.admin.add-courses', [
+            'trainers' => User::all(['id', 'name'])
+        ])->layout('components.layouts.admin');
     }
 }

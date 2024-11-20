@@ -13,5 +13,4 @@ jobs:
         uses: casassg/auto-merge-bot@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          pwd: "./.github"
+

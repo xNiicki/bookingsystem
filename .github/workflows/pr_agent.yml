@@ -1,22 +1,15 @@
+name: Auto Merge Bot
 on:
-  pull_request:
-    types: [opened, reopened, ready_for_review]
+  pull_request_target:
+    types: [opened, synchronize]
   issue_comment:
+    types: [created]
 jobs:
-  pr_agent_job:
-    if: ${{ github.event.sender.type != 'Bot' }}
+  auto-merge-bot:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
-      contents: write
-    name: Run pr agent on every pull request, respond to user comments
     steps:
-      - name: PR Agent action step
-        id: pragent
-        uses: Codium-ai/pr-agent@main
+      - uses: actions/checkout@v3
+      - name: Run Auto Merge Bot
+        uses: casassg/auto-merge-bot@master
         env:
-          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          config.model: "gpt-4o"
-          config.model_turbo: "gpt-3.5-turbo"

@@ -32,10 +32,13 @@
 
                 <div class="mb-3">
                     <h4>Course Details:</h4>
+                    <p><strong>Description:</strong>{{ $course->description }}</p>
                     <p><strong>Start Date:</strong> {{ $course->startDate }}</p>
                     <p><strong>Time:</strong> {{ $course->startTime }}</p>
                     <p><strong>Day:</strong> {{ $course->dayName }}</p>
                     <p><strong>Number of Sessions:</strong> {{ $course->sessions }}</p>
+                    <p><strong>Price:</strong> {{ $course->price }}€</p>
+                    <p><strong>Trainer:</strong> {{ $course->trainers->first()->name }}</p>
                 </div>
 
                 <button type="submit" class="btn btn-primary">

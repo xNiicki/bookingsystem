@@ -11,21 +11,37 @@ class Courses extends Component
     public function render()
     {
 
-
-        $courses = Course::query()
-            ->orderBy('startDate')
-            ->orderBy('startTime')
-            ->get()
-            ->map(function ($course) {
-                return [
-                    'id' => $course->id,
-                    'name' => $course->name,
-                    'formattedDate' => Carbon::parse($course->startDate)->format('d.m.Y'),
-                    'formattedTime' => Carbon::parse($course->startTime)->format('H:i'),
-                    'dayName' => $course->dayName,
-                    'sessions' => $course->sessions,
-                ];
-            });
+        if (auth()->user()->isAdmin()) {
+            $courses = Course::query()
+                ->orderBy('startDate')
+                ->orderBy('startTime')
+                ->get()
+                ->map(function ($course) {
+                    return [
+                        'id' => $course->id,
+                        'name' => $course->name,
+                        'formattedDate' => Carbon::parse($course->startDate)->format('d.m.Y'),
+                        'formattedTime' => Carbon::parse($course->startTime)->format('H:i'),
+                        'dayName' => $course->dayName,
+                        'sessions' => $course->sessions,
+                    ];
+                });
+        } else {
+            $courses = auth()->user()->courses()
+                ->orderBy('startDate')
+                ->orderBy('startTime')
+                ->get()
+                ->map(function ($course) {
+                    return [
+                        'id' => $course->id,
+                        'name' => $course->name,
+                        'formattedDate' => Carbon::parse($course->startDate)->format('d.m.Y'),
+                        'formattedTime' => Carbon::parse($course->startTime)->format('H:i'),
+                        'dayName' => $course->dayName,
+                        'sessions' => $course->sessions,
+                    ];
+                });
+        }
 
 
         return view('livewire.admin.courses', [

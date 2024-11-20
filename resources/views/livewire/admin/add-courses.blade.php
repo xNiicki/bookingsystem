@@ -31,6 +31,17 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror"
+                              id="description"
+                              wire:model="description"
+                              rows="3"></textarea>
+                    @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="startDate" class="form-label">Start Date</label>
@@ -86,7 +97,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="capacity" class="form-label">Maximum Capacity</label>
                         <input type="number"
                                class="form-control @error('capacity') is-invalid @enderror"
@@ -94,6 +105,31 @@
                                wire:model="capacity"
                                min="1">
                         @error('capacity')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number"
+                               class="form-control @error('price') is-invalid @enderror"
+                               id="price"
+                               wire:model="price"
+                               min="1">
+                        @error('price')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="trainer" class="form-label">Trainer</label>
+                        <select class="form-select @error('trainer') is-invalid @enderror"
+                                id="trainer"
+                                wire:model="trainer">
+                            <option value="">Select a trainer</option>
+                            @foreach($trainers as $trainer)
+                                <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('trainer')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

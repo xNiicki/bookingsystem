@@ -33,6 +33,15 @@ class Course extends Model
     }
 
     /**
+     * Get the trainers for the course.
+     */
+    public function trainers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'course_trainer')
+            ->withTimestamps();
+    }
+
+    /**
      * Check if course is fully booked
      */
     public function isFullyBooked(): bool

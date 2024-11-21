@@ -36,8 +36,7 @@
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Price:</th>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->price }}</td>
-        </tr>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ number_format($course->price, 2, '.', ',') }} €</td>        </tr>
     </table>
 
     <h3 style="color: #2c3e50;">Description:</h3>

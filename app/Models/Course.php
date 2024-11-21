@@ -15,12 +15,15 @@ class Course extends Model
         'startTime',
         'dayName',
         'sessions',
-        'capacity'
+        'capacity',
+        'price',  // Add this line
+        'description'  // Add this if it's not already there
     ];
 
     protected $casts = [
         'startDate' => 'date',
         'startTime' => 'datetime',
+        'price' => 'decimal:2',
     ];
 
     /**

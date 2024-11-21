@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\CourseBookingConfirmation;
 use App\Models\Course;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Register extends Component
@@ -49,7 +51,10 @@ class Register extends Component
         // Attach course to customer
         $customer->courses()->attach($this->courseId);
 
+        $course = Course::findOrFail($this->courseId);
+
         // Send email notification
+        Mail::to($customer->email)->send(new CourseBookingConfirmation($course, $customer));
         // Mail::to($this->email)->send(new CourseRegistrationMail($this->course, $customer));
 
         session()->flash('message', 'Successfully registered for the course!');

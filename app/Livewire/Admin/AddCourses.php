@@ -18,6 +18,7 @@ class AddCourses extends Component
     public $capacity;
     public $price;
     public $description;
+    public $trainer;
 
 
     // Validation Rules
@@ -53,6 +54,8 @@ class AddCourses extends Component
                 'price' => $this->price,
                 'description' => $this->description
             ]);
+
+            $course_trainer = $course->trainers()->attach($this->trainer);
 
             // Optional: Send email notification to admin
             // Mail::to('admin@example.com')->send(new NewCourseCreated($course));

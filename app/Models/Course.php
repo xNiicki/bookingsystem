@@ -20,6 +20,8 @@ class Course extends Model
         'description'  // Add this if it's not already there
     ];
 
+
+    // casts property
     protected $casts = [
         'startDate' => 'date',
         'startTime' => 'datetime',

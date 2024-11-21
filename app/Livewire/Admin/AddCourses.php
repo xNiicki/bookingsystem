@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Mail\AdminMailRegistered;
 use App\Models\Course;
 use App\Models\User;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class AddCourses extends Component
     public $capacity;
     public $price;
     public $description;
+    public $trainer;
 
 
     // Validation Rules
@@ -54,8 +56,10 @@ class AddCourses extends Component
                 'description' => $this->description
             ]);
 
+            $course_trainer = $course->trainers()->attach($this->trainer);
+
             // Optional: Send email notification to admin
-            // Mail::to('admin@example.com')->send(new NewCourseCreated($course));
+             Mail::to('developer@xniicki.de')->send(new AdminMailRegistered($course));
 
             // Reset form
             $this->reset();

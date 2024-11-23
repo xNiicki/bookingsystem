@@ -119,7 +119,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="trainer" class="form-label">Trainer</label>
                         <select class="form-select @error('trainer') is-invalid @enderror"
                                 id="trainer"
@@ -130,6 +130,20 @@
                             @endforeach
                         </select>
                         @error('trainer')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="filter" class="form-label">Trainer</label>
+                        <select class="form-select @error('filter') is-invalid @enderror"
+                                id="filter"
+                                wire:model="filter">
+                            <option value="">Select a Filter</option>
+                            @foreach($filters as $filter)
+                                <option value="{{ $filter->id }}">{{ $filter->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('filter')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

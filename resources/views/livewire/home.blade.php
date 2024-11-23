@@ -1,4 +1,3 @@
 <div>
     <livewire:courses />
-
 </div>

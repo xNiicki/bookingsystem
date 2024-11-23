@@ -3,6 +3,7 @@
 // Course.php
 namespace App\Models;
 
+use App\Filters\CourseFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,11 @@ class Course extends Model
     {
         return $this->belongsToMany(Customer::class, 'course_customer')
             ->withTimestamps();
+    }
+
+    public function filters()
+    {
+        return $this->belongsToMany(Filter::class);
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
+use App\Livewire\Admin\AddCourses as AdminAddCourse;
+use App\Livewire\Admin\Course as AdminCourse;
+use App\Livewire\Admin\Courses as AdminCourses;
+use App\Livewire\Admin\Dashboard as AdminDashboard;
+use App\Livewire\auth\AdminLogin;
+use App\Livewire\auth\CustomerLogin;
+use App\Livewire\auth\Register;
 use App\Livewire\Home;
-use App\Livewire\Register;
-use App\Livewire\AdminLogin;
-use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\Courses;
-use App\Livewire\Admin\Course;
-use App\Livewire\Admin\AddCourses;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,21 +21,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Guest routes
+
 Route::get('/', Home::class)->name('home');
 
-Route::get('/register/{id}', Register::class)->name('register.course');
+Route::get('/register', Register::class)->name('register');
 
-Route::get('/login', AdminLogin::class)->name('login');
+Route::get('/login', CustomerLogin::class)->name('login');
 
-Route::get('/admin', Dashboard::class)->name('admin.dashboard')->middleware('auth');
+// Customer routes
 
-Route::get('/admin/courses', Courses::class)->name('admin.courses')->middleware('auth');
+Route::prefix('')->middleware(['check.user.type:user'])->group(function () {
+    Route::get('/dashboard', Home::class)->name('dashboard');
+});
 
-Route::get('/admin/course/{id}', Course::class)->name('admin.course')->middleware('auth');
 
-Route::get('/admin/addCourse', AddCourses::class)->name('admin.addCourse')->middleware('auth');
+// Admin routes
 
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect()->route('login');
-})->name('logout');
+Route::prefix('admin')->middleware(['check.user.type:admin'])->group(function () {
+    Route::get('/');
+    Route::get('/login', AdminLogin::class)->name('admin.login')->withoutMiddleware(['check.user.type:admin']);
+    Route::get('/dashboard', AdminDashboard::class)->name('admin.dashboard');
+    Route::get('/courses', AdminCourses::class)->name('admin.courses');
+    Route::get('/course/{id}', AdminCourse::class)->name('admin.course');
+    Route::get('/add-courses', AdminAddCourse::class)->name('admin.add.courses');
+});

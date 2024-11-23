@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::Create('filters', function (Blueprint $table) {
-            $table->id();
-            $table->text('Name');
-            $table->text('Description');
-            $table->text('Type');
+            $table->id();;
+            $table->text('description')->nullable();
+            $table->text('type');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('filters');
     }
 };

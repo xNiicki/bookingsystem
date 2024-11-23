@@ -12,10 +12,13 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->default('');
+            $table->decimal('price', 8, 2)->default(130.00);
             $table->date('startDate');
             $table->time('startTime');
             $table->enum('dayName', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
             $table->integer('sessions');
+            $table->integer('capacity')->default(10);
             $table->timestamps();
         });
     }

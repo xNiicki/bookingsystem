@@ -93,7 +93,7 @@ class AddCourses extends Component
     {
         return view('livewire.admin.add-courses', [
             'trainers' => User::all(['id', 'name']),
-            'filters' => Filter::all(['id', 'name'])
+            'filters' => Filter::all(['id', 'type'])
         ])->layout('components.layouts.admin');
     }
 }

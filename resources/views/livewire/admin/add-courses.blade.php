@@ -134,15 +134,20 @@
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="filter" class="form-label">Trainer</label>
+                        <label for="filter" class="form-label">Filter</label>
+                        <div class="input-group">
                         <select class="form-select @error('filter') is-invalid @enderror"
                                 id="filter"
                                 wire:model="filter">
                             <option value="">Select a Filter</option>
                             @foreach($filters as $filter)
-                                <option value="{{ $filter->id }}">{{ $filter->name }}</option>
+                                <option value="{{ $filter->id }}">{{ $filter->type }}</option>
                             @endforeach
                         </select>
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#createFilterModel">
+                            <i class="fas fa-plus"> + </i>
+                        </button>
+                        </div>
                         @error('filter')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -161,6 +166,13 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="modal fade" id="createFilterModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <livewire:component.admin.create-filter/>
+            </div>
         </div>
     </div>
 </div>

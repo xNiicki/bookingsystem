@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Filter extends Model
 {
-    protected $fillable = ['Name', 'Description', 'Type'];
+    protected $fillable = ['type', 'description'];
 
     public function courses()
     {

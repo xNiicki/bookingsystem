@@ -1,0 +1,46 @@
+name: Laravel Livewire Code Style
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  code-style:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run PHP CS Fixer
+      run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse
+
+    - name: Check PSR-12 compliance
+      run: vendor/bin/phpcs --standard=PSR12 app tests
+
+    - name: Check Livewire best practices
+      run: |
+        echo "Checking Livewire components for best practices..."
+        grep -R "wire:model.live" app/Http/Livewire && echo "Warning: Avoid using wire:model.live modifier where possible" || echo "No wire:model.live found, good job!"
+        grep -R "public \$" app/Http/Livewire && echo "Warning: Consider using typed properties in Livewire components" || echo "All properties are typed, excellent!"
+
+    - name: Lint Blade templates
+      run: |
+        find resources/views -name "*.blade.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Check for large objects in Livewire components
+      run: |
+        echo "Checking for large objects in Livewire components..."
+        grep -R "public \\\App\\\Models" app/Http/Livewire && echo "Warning: Avoid passing large objects to Livewire components" || echo "No large objects found in components, great!"

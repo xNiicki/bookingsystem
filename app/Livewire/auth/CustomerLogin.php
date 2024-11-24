@@ -19,7 +19,7 @@ class CustomerLogin extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password, 'type' => 'user'])) {
             session()->flash('message', 'Logged in successfully');
-            return redirect()->intended('/');
+            return redirect()->intended(route('home'));
         }
 
         $this->addError('email', 'These credentials do not match our records.');

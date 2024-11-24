@@ -2,8 +2,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header py-3">
-                    <h3 class="text-center mb-0">{{ $course->name }}</h3>
+                <div class="card-header py-3 d-flex align-items-center">
+                    <button class="btn btn-primary btn-lg" onclick="window.history.back()"><i class="bi bi-arrow-left"></i> Back</button>
+                    <h3 class="flex-grow-1 text-center mb-0">{{ $course->name }}</h3>
+                    <div class="invisible-spacer" style="width: 92px;"></div>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -26,10 +28,13 @@
                                 <p class="display-4 fw-bold">{{ $course->available_spots }}</p>
                             </div>
                             <!-- Button trigger modal -->
-
-                            <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
-
+                            @if(!Auth::user()->customerCourses->contains($course->id))
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
+                            @else
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Registered</button>
+                            @endif
                             <!-- Modal -->
+                            @if(\Illuminate\Support\Facades\Auth::check())
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -47,6 +52,26 @@
                                     </div>
                                 </div>
                             </div>
+                            @elseif(!\Illuminate\Support\Facades\Auth::check())
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content  text-white">
+                                            <div class="modal-header bg-danger border-bottom-0">
+                                                <h5 class="modal-title" id="exampleModalLabel">Not Registered</h5>
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-black">
+                                                Bitte melden Sie sich an, um fortzufahren.
+                                            </div>
+                                            <div class="modal-footer border-top-0">
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Schließen</button>
+                                                <button type="button" class="btn btn-primary" wire:click="redirectToRegister">Registrieren</button>
+                                                <button type="button" class="btn btn-primary" wire:click="redirectToLogin">Anmelden</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
 
                         </div>
                     </div>

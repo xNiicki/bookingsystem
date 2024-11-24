@@ -32,7 +32,7 @@ class Register extends Component
 
         Auth::attempt(['email' => $this->email, 'password' => $this->password]);
         session()->flash('message', 'You have successfully registered & logged in!');
-        return redirect()->route('home');
+        return redirect()->intended(route('home'));
     }
 
     public function render()

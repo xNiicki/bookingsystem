@@ -48,6 +48,20 @@ class Course extends Component
 
     }
 
+    public function redirectToLogin()
+    {
+        session()->flash('message', 'Please login to register for the course!');
+        session()->put('url.intended', url()->previous());
+        return redirect()->route('login');
+    }
+
+    public function redirectToRegister()
+    {
+        session()->flash('message', 'Please login to register for the course!');
+        session()->put('url.intended', url()->previous());
+        return redirect()->route('register');
+    }
+
 
     public function showConfirmationModal()
     {

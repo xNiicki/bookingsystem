@@ -49,7 +49,7 @@
         @endforeach
     </ul>
 
-    <a href="{{ url('/courses/' . $course->id) }}" style="display: inline-block; background-color: #3498db; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">View Course Details</a>
+    <a href="{{ url('/course/' . $course->id) }}" style="display: inline-block; background-color: #3498db; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">View Course Details</a>
 </main>
 
 <footer style="background-color: #f4f4f4; padding: 20px; text-align: center; margin-top: 20px;">

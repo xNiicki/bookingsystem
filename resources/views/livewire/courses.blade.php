@@ -43,7 +43,7 @@
                                         </span>
                                     </div>
                                     <button
-                                        onclick="window.location.href='{{ route('register.course', $course->id) }}'"
+                                        onclick="window.location.href='{{ route('course', $course->id) }}'"
                                         class="btn btn-primary"
                                         {{ $course->isFullyBooked() ? 'disabled' : '' }}
                                     >

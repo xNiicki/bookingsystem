@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
 
+Route::get('/course/{id}', \App\Livewire\Course::class)->name('course');
+
 Route::get('/register', Register::class)->name('register');
 
 Route::get('/login', CustomerLogin::class)->name('login');
@@ -44,5 +46,5 @@ Route::prefix('admin')->middleware(['check.user.type:admin'])->group(function ()
     Route::get('/dashboard', AdminDashboard::class)->name('admin.dashboard');
     Route::get('/courses', AdminCourses::class)->name('admin.courses');
     Route::get('/course/{id}', AdminCourse::class)->name('admin.course');
-    Route::get('/add-courses', AdminAddCourse::class)->name('admin.add.courses');
+    Route::get('/add-courses', AdminAddCourse::class)->name('admin.addCourse');
 });

@@ -34,7 +34,7 @@ class Course extends Model
      */
     public function customers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Customer::class, 'course_customer')
+        return $this->belongsToMany(User::class, 'course_customer')
             ->withTimestamps();
     }
 

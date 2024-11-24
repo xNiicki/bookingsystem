@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,7 +19,7 @@ class CourseBookingConfirmation extends Mailable
     public $course;
     public $customer;
 
-    public function __construct(Course $course, Customer $customer)
+    public function __construct(Course $course, User $customer)
     {
         $this->course = $course;
         $this->customer = $customer;

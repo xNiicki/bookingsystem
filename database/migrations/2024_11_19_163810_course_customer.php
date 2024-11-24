@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('course_customer', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('restrict');
-            $table->foreignId('customer_id')->constrained()->onDelete('restrict');
+            $table->foreignId('user_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
     }

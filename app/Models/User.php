@@ -46,16 +46,16 @@ class User extends Authenticatable
     /**
      * Get The courses for the trainer.
      */
-    public function courses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function trainerCourses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'course_trainer')
             ->withTimestamps();
     }
 
-    protected function type(): Attribute
+    public function customerCourses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return new Attribute(
-            get: fn ($value) => $value === 1 ? 'admin' : 'user',
-        );
+        return $this->belongsToMany(Course::class, 'course_customer')
+            ->withTimestamps();
     }
+
 }

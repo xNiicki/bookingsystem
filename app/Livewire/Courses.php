@@ -29,8 +29,7 @@ class Courses extends Component
 
         return view('livewire.courses', [
             'courses' => $courses,
-            'types' => \App\Models\Filter::distinct('Type')->pluck('Type'),
-            'names' => \App\Models\Filter::distinct('Name')->pluck('Name'),
+            'types' => \App\Models\Filter::distinct('type')->pluck('type'),
         ]);
     }
 }

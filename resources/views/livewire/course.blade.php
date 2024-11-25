@@ -16,8 +16,8 @@
                             @endforeach
 
                             <h5 class="text-muted mt-4 mb-3">Schedule</h5>
-                            <p class="mb-1"><i class="bi bi-calendar-event me-2"></i>{{ $course->dayName }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}</p>
-                            <p><i clas s="bi bi-clock me-2"></i>{{ Carbon\Carbon::parse($course->startTime)->format('H:i') }} - {{ Carbon\Carbon::parse($course->endTime)->format('H:i') }}</p>
+                            <p class="mb-1"><i class="bi bi-calendar-event me-2"></i>{{ \Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}</p>
+                            <p><i class="bi bi-clock me-2"></i>{{ Carbon\Carbon::parse($course->startTime)->format('H:i') }} - {{ Carbon\Carbon::parse($course->endTime)->format('H:i') }}</p>
 
                             <h5 class="text-muted mt-4 mb-3">Description</h5>
                             <p class="card-text">{{ $course->description }}</p>

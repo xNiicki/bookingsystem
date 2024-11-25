@@ -29,7 +29,9 @@ class CreateFilter extends Component
         ]);
 
         session()->flash('message', 'Filter created successfully.');
+        $this->dispatch('filterCreated');
         $this->reset(['type', 'description']);
+
     }
 
 

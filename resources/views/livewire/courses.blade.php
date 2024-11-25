@@ -32,8 +32,7 @@
                             <div class="card-body">
                                 <h3 class="card-title">{{ $course->name }}</h3>
                                 <div class="text-muted mb-2">
-                                    {{ $course->dayName }}
-                                    - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
+                                    {{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
                                     at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}
                                 </div>
                                 <div class="mb-2">

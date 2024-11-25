@@ -42,18 +42,18 @@
                     @enderror
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date"
-                               class="form-control @error('startDate') is-invalid @enderror"
-                               id="startDate"
-                               wire:model="startDate">
-                        @error('startDate')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
 
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date"
+                           class="form-control @error('startDate') is-invalid @enderror"
+                           id="startDate"
+                           wire:model="startDate">
+                    @error('startDate')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="startTime" class="form-label">Start Time</label>
                         <input type="time"
@@ -64,28 +64,19 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="dayName" class="form-label">Day of Week</label>
-                        <select class="form-select @error('dayName') is-invalid @enderror"
-                                id="dayName"
-                                wire:model="dayName">
-                            <option value="">Select a day</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
-                        @error('dayName')
+                        <label for="endTime" class="form-label">End Time</label>
+                        <input type="time"
+                               class="form-control @error('endTime') is-invalid @enderror"
+                               id="endTime"
+                               wire:model="endTime">
+                        @error('endTime')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="sessions" class="form-label">Number of Sessions</label>
                         <input type="number"
@@ -135,18 +126,31 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="filter" class="form-label">Filter</label>
-                        <div class="input-group">
-                        <select class="form-select @error('filter') is-invalid @enderror"
-                                id="filter"
-                                wire:model="filter">
-                            <option value="">Select a Filter</option>
-                            @foreach($filters as $filter)
-                                <option value="{{ $filter->id }}">{{ $filter->type }}</option>
-                            @endforeach
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#createFilterModel">
-                            <i class="fas fa-plus"> + </i>
-                        </button>
+                        <div class="d-flex flex-column">
+                            <div class="selected-filters mb-2">
+                                @if ($selectedFilter)
+                                @foreach($selectedFilter as $option)
+                                    <span class="badge bg-primary me-1">{{ \App\Models\Filter::find($option)->type }}</span>
+                                @endforeach
+                                @endif
+                            </div>
+                            <div class="input-group">
+                                <select class="form-select @error('filter') is-invalid @enderror"
+                                        id="filter"
+                                        wire:model.live="filter">
+                                    <option value="">Select a Filter</option>
+                                    @foreach($filters as $filter)
+                                        <option value="{{ $filter->id }}"
+                                                class="@if(in_array($filter->id, $this->selectedFilter)) bg-primary @endif">
+                                            {{ $filter->type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#createFilterModel">
+                                    <i class="fas fa-plus"> + </i>
+                                </button>
+                            </div>
                         </div>
                         @error('filter')
                         <div class="invalid-feedback">{{ $message }}</div>

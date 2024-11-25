@@ -14,7 +14,7 @@ class Course extends Model
         'name',
         'startDate',
         'startTime',
-        'dayName',
+        'endTime',
         'sessions',
         'capacity',
         'price',  // Add this line
@@ -26,6 +26,7 @@ class Course extends Model
     protected $casts = [
         'startDate' => 'date',
         'startTime' => 'datetime',
+        'endTime' => 'datetime',
         'price' => 'decimal:2',
     ];
 

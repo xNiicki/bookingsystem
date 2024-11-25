@@ -28,10 +28,13 @@
                                 <p class="display-4 fw-bold">{{ $course->available_spots }}</p>
                             </div>
                             <!-- Button trigger modal -->
-                            @if(!Auth::user()->customerCourses->contains($course->id))
+                            @if(!Auth::check())
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
+                            @elseif(!Auth::user()->customerCourses->contains($course->id))
                                 <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
                             @else
                                 <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Registered</button>
+
                             @endif
                             <!-- Modal -->
                             @if(\Illuminate\Support\Facades\Auth::check())

@@ -18,7 +18,7 @@
                         <div class="small text
                         -muted mt-1">
                             <i class="bi bi-collection"></i>
-                            Number of sessions: {{ $course['sessions'] }}
+                            Anzahl der Termine: {{ $course['sessions'] }}
                         </div>
                     </div>
                     <div class="col-auto">

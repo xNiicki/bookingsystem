@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
 
 jobs:
   deploy:
@@ -16,7 +26,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0' # Specify your PHP version
+          php-version: '8.0'
           extensions: mbstring, xml, curl, zip
           ini-values: post_max_size=256M, upload_max_filesize=256M
 
@@ -26,6 +36,16 @@ jobs:
       - name: Run tests
         run: php artisan test
 
+      - name: Set environment file
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Using ${{ github.event.inputs.environment }} environment"
+            cp .env.${{ github.event.inputs.environment }} .env
+          else
+            echo "Using production environment"
+            cp .env.production .env
+          fi
+
       - name: Deploy to Hetzner
         env:
           HOST: ${{ secrets.HOST }}
@@ -34,5 +54,5 @@ jobs:
         run: |
           echo "$SSH_KEY" > private_key
           chmod 600 private_key
-          rsync -avz --delete --exclude='.git*' -e "ssh -i private_key -o StrictHostKeyChecking=no" . $USERNAME@$HOST:/bookingsystem/
-          ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$HOST "cd /bookingsystem && php artisan migrate --force && php artisan optimize && npm run prod"
+          rsync -avz --delete --exclude='.git*' -e "ssh -i private_key -o StrictHostKeyChecking=no" . $USERNAME@$HOST:/path/to/your/app/
+          ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$HOST "cd /path/to/your/app && php artisan migrate --force && php artisan optimize"

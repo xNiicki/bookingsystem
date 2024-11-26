@@ -3,13 +3,13 @@
     <div class="mb-3">
         <a href="{{ route('admin.courses') }}" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-2"></i>
-            Back to Courses
+            Zurück
         </a>
     </div>
 
     <div class="card">
         <div class="card-header bg-primary text-white">
-            <h2 class="h4 mb-0">Add New Course</h2>
+            <h2 class="h4 mb-0">Neuen Kurs hinzufügen</h2>
         </div>
 
         <div class="card-body">
@@ -21,7 +21,7 @@
 
             <form wire:submit="submit">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Course Name</label>
+                    <label for="name" class="form-label">Kurs Name</label>
                     <input type="text"
                            class="form-control @error('name') is-invalid @enderror"
                            id="name"
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
+                    <label for="description" class="form-label">Beschreibung</label>
                     <textarea class="form-control @error('description') is-invalid @enderror"
                               id="description"
                               wire:model="description"
@@ -44,7 +44,7 @@
 
 
                 <div class="mb-3">
-                    <label for="startDate" class="form-label">Start Date</label>
+                    <label for="startDate" class="form-label">Start Datum</label>
                     <input type="date"
                            class="form-control @error('startDate') is-invalid @enderror"
                            id="startDate"
@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="startTime" class="form-label">Start Time</label>
+                        <label for="startTime" class="form-label">Start Zeit</label>
                         <input type="time"
                                class="form-control @error('startTime') is-invalid @enderror"
                                id="startTime"
@@ -65,7 +65,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="endTime" class="form-label">End Time</label>
+                        <label for="endTime" class="form-label">End Zeit</label>
                         <input type="time"
                                class="form-control @error('endTime') is-invalid @enderror"
                                id="endTime"
@@ -78,7 +78,7 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="sessions" class="form-label">Number of Sessions</label>
+                        <label for="sessions" class="form-label">Anzahl der Termine</label>
                         <input type="number"
                                class="form-control @error('sessions') is-invalid @enderror"
                                id="sessions"
@@ -89,7 +89,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="capacity" class="form-label">Maximum Capacity</label>
+                        <label for="capacity" class="form-label">Maximale Anzahl der Teilnehmer</label>
                         <input type="number"
                                class="form-control @error('capacity') is-invalid @enderror"
                                id="capacity"
@@ -100,7 +100,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="price" class="form-label">Price</label>
+                        <label for="price" class="form-label">Preis</label>
                         <input type="number"
                                class="form-control @error('price') is-invalid @enderror"
                                id="price"
@@ -138,7 +138,7 @@
                                 <select class="form-select @error('filter') is-invalid @enderror"
                                         id="filter"
                                         wire:model.live="filter">
-                                    <option value="">Select a Filter</option>
+                                    <option value="">Filter auswählen</option>
                                     @foreach($filters as $filter)
                                         <option value="{{ $filter->id }}"
                                                 class="@if(in_array($filter->id, $this->selectedFilter)) bg-primary @endif">
@@ -157,7 +157,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="picture" class="form-label">Picture</label>
+                        <label for="picture" class="form-label">Bild</label>
                         <input type="file"
                                class="form-control @error('picture') is-invalid @enderror"
                                id="picture"
@@ -171,11 +171,11 @@
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">
                         <span wire:loading.remove wire:target="submit">
-                            <i class="bi bi-plus-circle me-2"></i>Add Course
+                            <i class="bi bi-plus-circle me-2"></i>Kurs hinzufügen
                         </span>
                         <span wire:loading wire:target="submit">
                             <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-                            Creating...
+                            Erstellen...
                         </span>
                     </button>
                 </div>

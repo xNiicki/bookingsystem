@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dateTime('endTime')->default(now())->after('start_time');
+            $table->dateTime('endTime')->default(now())->after('startTime');
         });
     }
 

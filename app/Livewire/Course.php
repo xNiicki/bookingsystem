@@ -34,18 +34,27 @@ class Course extends Component
     public function register()
     {
         $userId = auth()->id();
-
         $user = User::findOrFail($userId);
-
-        $user->customerCourses()->attach($this->courseId);
-
         $course = CourseModel::findOrFail($this->courseId);
 
+        // Attach the user to the course
+        $user->customerCourses()->attach($this->courseId);
+
+        // Create attendance records for each session
+        for ($session = 1; $session <= $course->sessions; $session++) {
+            \App\Models\CourseAttendance::create([
+                'course_id' => $this->courseId,
+                'customer_id' => $userId,
+                'session_number' => $session,
+                'attended' => false // Default to not attended
+            ]);
+        }
+
+        // Send confirmation email
         Mail::to($user->email)->send(new CourseBookingConfirmation($course, $user));
 
         session()->flash('message', 'Successfully registered for the course!');
         return redirect()->route('home');
-
     }
 
     public function redirectToLogin()

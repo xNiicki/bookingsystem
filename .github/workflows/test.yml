@@ -33,6 +33,7 @@ jobs:
         
       - name: Set up database
         run: |
+          touch database/database.sqlite
           php artisan migrate --force
           php artisan db:seed --force
           

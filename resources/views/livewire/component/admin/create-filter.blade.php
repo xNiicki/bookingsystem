@@ -5,12 +5,12 @@
         </div>
     @endif
     <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Filter</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Filter Erstellen</h1>
     </div>
     <div class="modal-body">
         <form wire:submit="submit">
             <div class="mb-3">
-                <label for="type" class="form-label">Type</label>
+                <label for="type" class="form-label">Typ</label>
                 <input type="text"
                        class="form-control @error('type') is-invalid @enderror"
                        id="type"
@@ -20,7 +20,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Beschreibung</label>
                 <textarea class="form-control @error('description') is-invalid @enderror"
                           id="description"
                           wire:model="description"
@@ -30,8 +30,8 @@
                 @enderror
             </div>
             <div class="modal-footer">
-                <button type="button" wire:click="$refresh" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create</button>
+                <button type="button" wire:click="$refresh" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Erstellen</button>
             </div>
         </form>
 

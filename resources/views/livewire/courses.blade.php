@@ -34,7 +34,8 @@
                                     <h3 class="card-title">{{ $course->name }}</h3>
                                     <dl class="row mb-0">
                                         <dt class="col-sm-3">Tag:</dt>
-                                        <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
+                                        <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }}
+                                            - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
                                             at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
 
                                         <dt class="col-sm-3">Notiz:</dt>
@@ -45,7 +46,7 @@
                                     </dl>
                                     <div class="mt-2">
                 <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
-                    noch {{ $course->available_spots }} freie Plätze
+                    {{ $course->available_spots }} Plätze verfügbar
                 </span>
                                     </div>
                                     <button
@@ -57,7 +58,9 @@
                                     </button>
                                 </div>
                                 <div class="course-image ml-3">
-                                    <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}"
+                                         class="img-fluid rounded"
+                                         style="width: 150px; height: 150px; object-fit: cover;">
                                 </div>
                             </div>
                         </div>

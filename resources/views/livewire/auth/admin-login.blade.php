@@ -8,13 +8,13 @@
                 <div class="card-body">
                     <form wire:submit.prevent="login">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" wire:model="email" placeholder="Enter your email">
+                            <label for="email" class="form-label">Emailaddresse</label>
+                            <input type="email" class="form-control" id="email" wire:model="email" placeholder="Deine E-Mail">
                             @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" wire:model="password" placeholder="Enter your password">
+                            <label for="password" class="form-label">Passwort</label>
+                            <input type="password" class="form-control" id="password" wire:model="password" placeholder="Dein Passwort">
                             @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="d-grid">

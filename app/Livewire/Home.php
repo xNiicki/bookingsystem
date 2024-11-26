@@ -22,7 +22,7 @@ class Home extends Component
         $now = Carbon::today()->format('Y-m-d');
 
         $courses = Course::query()
-            ->whereRaw("datetime(startDate) > datetime(?)", [$now])
+            ->where('startDate', '>', $now)
             ->orderBy('startDate')
             ->orderBy('startTime')
             ->get();

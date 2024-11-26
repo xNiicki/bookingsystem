@@ -12,7 +12,7 @@ on:
         default: 'production'
         type: choice
         options:
-        - production
+        - example
         - staging
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
             cp .env.${{ github.event.inputs.environment }} .env
           else
             echo "Using production environment"
-            cp .env.production .env
+            cp .env.example .env
           fi
 
       - name: Deploy to Hetzner

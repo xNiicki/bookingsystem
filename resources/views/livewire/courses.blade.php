@@ -4,11 +4,11 @@
             <div class="card-body">
                 <h3 class="h5 mb-3">Filters</h3>
                 <div class="mb-3">
-                    <input wire:model.live="search" type="text" class="form-control" placeholder="Search courses...">
+                    <input wire:model.live="search" type="text" class="form-control" placeholder="Kurs eingeben....">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Course Type</label>
+                    <label class="form-label">Kursart</label>
                     <select wire:model.live="type" class="form-select">
                         <option value="">All Types</option>
                         @foreach($types as $type)
@@ -24,7 +24,7 @@
     <div class="col-md-9">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title h4 mb-4">Available Courses</h2>
+                <h2 class="card-title h4 mb-4">Verfügbare Kurse</h2>
 
                 <div class="mb-3">
                     @foreach($courses as $course)
@@ -33,19 +33,19 @@
                                 <div class="course-info flex-grow-1">
                                     <h3 class="card-title">{{ $course->name }}</h3>
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-3">Day:</dt>
+                                        <dt class="col-sm-3">Tag:</dt>
                                         <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
                                             at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
 
-                                        <dt class="col-sm-3">Notes:</dt>
+                                        <dt class="col-sm-3">Notiz:</dt>
                                         <dd class="col-sm-9">{{ $course->notes }}</dd>
 
-                                        <dt class="col-sm-3">Price:</dt>
+                                        <dt class="col-sm-3">Preis:</dt>
                                         <dd class="col-sm-9">{{ $course->price }}€</dd>
                                     </dl>
                                     <div class="mt-2">
                 <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
-                    {{ $course->available_spots }} spots available
+                    noch {{ $course->available_spots }} freie Plätze
                 </span>
                                     </div>
                                     <button
@@ -53,7 +53,7 @@
                                         class="btn btn-primary mt-2"
                                         {{ $course->isFullyBooked() ? 'disabled' : '' }}
                                     >
-                                        {{ $course->isFullyBooked() ? 'Fully Booked' : 'Register' }}
+                                        {{ $course->isFullyBooked() ? 'Ausgebucht' : 'Registrieren' }}
                                     </button>
                                 </div>
                                 <div class="course-image ml-3">
@@ -67,7 +67,7 @@
                 @if($courses->isEmpty())
                     <div class="text-center py-5 text-muted">
                         <i class="bi bi-calendar-x display-1"></i>
-                        <p class="mt-3">No courses available at the moment.</p>
+                        <p class="mt-3">Gerade keine Kurse verfügbar</p>
                     </div>
                 @endif
             </div>

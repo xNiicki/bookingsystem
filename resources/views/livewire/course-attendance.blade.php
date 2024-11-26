@@ -8,9 +8,9 @@
                 <table class="table table-striped ">
                     <thead class="thead-light">
                     <tr>
-                        <th>Customer</th>
+                        <th>Kunden</th>
                         @for ($i = 1; $i <= $course->sessions; $i++)
-                            <th class="text-center">Session {{ $i }}</th>
+                            <th class="text-center">Termin {{ $i }}</th>
                         @endfor
                     </tr>
                     </thead>
@@ -34,7 +34,7 @@
             </div>
         @else
             <div class="alert alert-info">
-                No attendance records found for this course.
+                Für diesen Kurs wurden keine Anwesenheitslisten gefunden.
             </div>
         @endif
     </div>

@@ -10,7 +10,7 @@
         <div class="card">
 
             <div class="card-header bg-primary text-white">
-                <h2 class="h4 mb-0">{{ $course->name }} - Registered Customers</h2>
+                <h2 class="h4 mb-0">{{ $course->name }} - Kundendaten</h2>
             </div>
 
 
@@ -22,8 +22,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Registration Date</th>
+                                <th>Handynummer</th>
+                                <th>Anmeldedatum</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -50,7 +50,7 @@
                     </div>
                 @else
                     <div class="alert alert-info">
-                        No customers registered for this course yet.
+                        Bisher haben sich keine Teilnehmer für diesen Kurs angemeldet.
                     </div>
                 @endif
             </div>

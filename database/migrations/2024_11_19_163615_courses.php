@@ -16,7 +16,6 @@ return new class extends Migration
             $table->decimal('price', 8, 2)->default(130.00);
             $table->date('startDate');
             $table->time('startTime');
-            $table->enum('dayName', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
             $table->integer('sessions');
             $table->integer('capacity')->default(10);
             $table->timestamps();

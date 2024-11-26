@@ -12,13 +12,13 @@ class Course extends Model
 {
     protected $fillable = [
         'name',
+        'description',
+        'price',
         'startDate',
         'startTime',
         'endTime',
         'sessions',
         'capacity',
-        'price',  // Add this line
-        'description',  // Add this if it's not already there
         'notes',
         'picture'
     ];

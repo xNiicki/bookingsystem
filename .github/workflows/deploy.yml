@@ -1,4 +1,4 @@
-name: Deploy Laravel Application
+name: Test and Deploy Laravel Application
 
 on:
   workflow_dispatch:
@@ -9,13 +9,33 @@ on:
         default: 'production'
         type: choice
         options:
-        - example
+        - production
         - staging
 
 jobs:
-  deploy:
+  run_tests:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, curl, zip
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Run tests
+        run: php artisan test
+
+  deploy:
+    needs: run_tests
+    runs-on: ubuntu-latest
+    if: success()
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,9 +50,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      - name: Run tests
-        run: php artisan test
-
       - name: Set environment file
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -40,7 +57,7 @@ jobs:
             cp .env.${{ github.event.inputs.environment }} .env
           else
             echo "Using production environment"
-            cp .env.example .env
+            cp .env.production .env
           fi
 
       - name: Deploy to Hetzner

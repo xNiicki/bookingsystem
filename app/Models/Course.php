@@ -18,7 +18,8 @@ class Course extends Model
         'sessions',
         'capacity',
         'price',  // Add this line
-        'description'  // Add this if it's not already there
+        'description',  // Add this if it's not already there
+        'notes'
     ];
 
 

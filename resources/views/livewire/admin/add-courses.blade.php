@@ -156,6 +156,16 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="picture" class="form-label">Picture</label>
+                        <input type="file"
+                               class="form-control @error('picture') is-invalid @enderror"
+                               id="picture"
+                               wire:model.live="picture">
+                        @error('picture')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="d-grid gap-2">

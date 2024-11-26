@@ -8,9 +8,13 @@ use App\Models\Filter;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
+use Livewire\WithFileUploads;
 
 class AddCourses extends Component
 {
+    use WithFileUploads;
+
+
     // Form Properties
     public $name;
     public $startDate;
@@ -22,6 +26,7 @@ class AddCourses extends Component
     public $description;
     public $trainer;
     public $filter;
+    public $picture;
     public array $selectedFilter = [];
     protected $listeners = ['filterCreated' => 'refreshFilters'];
 
@@ -35,7 +40,9 @@ class AddCourses extends Component
         'startTime' => 'required',
         'endTime' => 'required|after:startTime',
         'sessions' => 'required|integer|min:1',
-        'capacity' => 'required|integer|min:1'  // Add this
+        'capacity' => 'required|integer|min:1', // Add this
+        'picture' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+        'description' => 'required',
 
     ];
 
@@ -50,6 +57,10 @@ class AddCourses extends Component
         $this->validate();
 
         try {
+            // uplaod image
+            $imageName = now() . '.' . $this->picture->extension();
+            $imagePath = $this->picture->store('storage', 'public');
+
             // Create new course
             $course = Course::create([
                 'name' => $this->name,
@@ -59,7 +70,8 @@ class AddCourses extends Component
                 'sessions' => $this->sessions,
                 'capacity' => $this->capacity,
                 'price' => $this->price,
-                'description' => $this->description
+                'description' => $this->description,
+                'picture' => $imagePath
             ]);
 
             $course_trainer = $course->trainers()->attach($this->trainer);

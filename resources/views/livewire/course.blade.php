@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="p-3 rounded text-center">
-                                <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::url($course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
 
                             </div>
                             <div class="mt-2">

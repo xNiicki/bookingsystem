@@ -19,7 +19,8 @@ class Course extends Model
         'capacity',
         'price',  // Add this line
         'description',  // Add this if it's not already there
-        'notes'
+        'notes',
+        'picture'
     ];
 
 

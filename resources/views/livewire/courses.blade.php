@@ -29,24 +29,36 @@
                 <div class="mb-3">
                     @foreach($courses as $course)
                         <div class="card mb-3">
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $course->name }}</h3>
-                                <div class="text-muted mb-2">
-                                    {{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
-                                    at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}
+                            <div class="card-body d-flex">
+                                <div class="course-info flex-grow-1">
+                                    <h3 class="card-title">{{ $course->name }}</h3>
+                                    <dl class="row mb-0">
+                                        <dt class="col-sm-3">Day:</dt>
+                                        <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
+                                            at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
+
+                                        <dt class="col-sm-3">Notes:</dt>
+                                        <dd class="col-sm-9">{{ $course->notes }}</dd>
+
+                                        <dt class="col-sm-3">Price:</dt>
+                                        <dd class="col-sm-9">{{ $course->price }}€</dd>
+                                    </dl>
+                                    <div class="mt-2">
+                <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
+                    {{ $course->available_spots }} spots available
+                </span>
+                                    </div>
+                                    <button
+                                        onclick="window.location.href='{{ route('course', $course->id) }}'"
+                                        class="btn btn-primary mt-2"
+                                        {{ $course->isFullyBooked() ? 'disabled' : '' }}
+                                    >
+                                        {{ $course->isFullyBooked() ? 'Fully Booked' : 'Register' }}
+                                    </button>
                                 </div>
-                                <div class="mb-2">
-                                        <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
-                                            {{ $course->available_spots }} spots available
-                                        </span>
+                                <div class="course-image ml-3">
+                                    <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
                                 </div>
-                                <button
-                                    onclick="window.location.href='{{ route('course', $course->id) }}'"
-                                    class="btn btn-primary"
-                                    {{ $course->isFullyBooked() ? 'disabled' : '' }}
-                                >
-                                    {{ $course->isFullyBooked() ? 'Fully Booked' : 'Register' }}
-                                </button>
                             </div>
                         </div>
                     @endforeach

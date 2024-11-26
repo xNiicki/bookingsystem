@@ -29,6 +29,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
 
+      - name: Set envoirement File
+        run: cp .env.example .env
+        
       - name: Run tests
         run: php artisan test
 

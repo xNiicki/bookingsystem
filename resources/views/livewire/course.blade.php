@@ -3,7 +3,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header py-3 d-flex align-items-center">
-                    <button class="btn btn-primary btn-lg" onclick="window.history.back()"><i class="bi bi-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary btn-lg" onclick="window.history.back()"><i class="bi bi-arrow-left"></i> Zurück</button>
                     <h3 class="flex-grow-1 text-center mb-0">{{ $course->name }}</h3>
                     <div class="invisible-spacer" style="width: 92px;"></div>
                 </div>
@@ -42,11 +42,11 @@
                                 </span>
                             <!-- Button trigger modal -->
                             @if(!Auth::check())
-                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrieren</button>
                             @elseif(!Auth::user()->customerCourses->contains($course->id))
-                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrieren</button>
                             @else
-                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Registered</button>
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Bereits Registriert</button>
 
                             @endif
                             <!-- Modal -->
@@ -59,10 +59,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Mit der Anmeldung bestätigen Sie, dass Sie die <a href="#">AGB</a> gelesen und akzeptiert haben.
+                                            Mit der Anmeldung bestätigen Sie, dass Sie die <a href="https://janine-lorenz.de/AGB/">AGB</a> gelesen und akzeptiert haben.
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
                                             <button type="button" class="btn btn-primary" wire:click="register">Akzeptieren</button>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content  text-white">
                                             <div class="modal-header bg-danger border-bottom-0">
-                                                <h5 class="modal-title" id="exampleModalLabel">Not Registered</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Nicht Registriert</h5>
                                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-black">

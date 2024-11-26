@@ -37,7 +37,6 @@ class CourseSeeder extends Seeder
                 'name' => $this->courseNames[array_rand($this->courseNames)],
                 'startDate' => Carbon::now()->addDays(rand(1, 30))->format('Y-m-d'),
                 'startTime' => sprintf('%02d:%02d:00', rand(8, 20), rand(0, 59)),
-                'dayName' => $this->days[array_rand($this->days)],
                 'sessions' => rand(4, 12)
             ]);
         }

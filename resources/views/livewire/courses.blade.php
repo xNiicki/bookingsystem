@@ -10,7 +10,7 @@
                 <div class="mb-3">
                     <label class="form-label">Kursart</label>
                     <select wire:model.live="type" class="form-select">
-                        <option value="">All Types</option>
+                        <option value="">Alle Arten</option>
                         @foreach($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach
@@ -34,9 +34,9 @@
                                     <h3 class="card-title">{{ $course->name }}</h3>
                                     <dl class="row mb-0">
                                         <dt class="col-sm-3">Tag:</dt>
-                                        <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }}
+                                        <dd class="col-sm-9">{{Carbon\Carbon::parse($course->startDate)->isoFormat('dddd') }}
                                             - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
-                                            at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
+                                            um {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
 
                                         <dt class="col-sm-3">Notiz:</dt>
                                         <dd class="col-sm-9">{{ $course->notes }}</dd>

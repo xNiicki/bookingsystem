@@ -80,5 +80,5 @@ jobs:
         run: |
           echo "$SSH_KEY" > private_key
           chmod 600 private_key
-          rsync -avz --delete --exclude='.git*' -e "ssh -i private_key -o StrictHostKeyChecking=no" . $USERNAME@$HOST:/path/to/your/app/
-          ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$HOST "cd /path/to/your/app && php artisan migrate --force && php artisan optimize"
+          rsync -avz --delete --exclude='.git*' -e "ssh -i private_key -o StrictHostKeyChecking=no" . $USERNAME@$HOST:/bookingsystem/
+          ssh -i private_key -o StrictHostKeyChecking=no $USERNAME@$HOST "cd /bookingsystem && php artisan migrate --force && php artisan optimize"

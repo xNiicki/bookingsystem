@@ -10,23 +10,36 @@
                 <div class="card-body p-4">
                     <div class="row">
                         <div class="col-md-8">
-                            <h5 class="text-muted mb-3">Trainers</h5>
-                            @foreach($course->trainers as $trainer)
-                                <p class="mb-1"><i class="bi bi-person-fill me-2"></i>{{ $trainer->name }}</p>
-                            @endforeach
 
-                            <h5 class="text-muted mt-4 mb-3">Schedule</h5>
-                            <p class="mb-1"><i class="bi bi-calendar-event me-2"></i>{{ \Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}</p>
-                            <p><i class="bi bi-clock me-2"></i>{{ Carbon\Carbon::parse($course->startTime)->format('H:i') }} - {{ Carbon\Carbon::parse($course->endTime)->format('H:i') }}</p>
+                            <dl class="row mb-0">
+                                <dt class="col-sm-3">Kursleitung: </dt>
+                                <dd class="col-sm-9"> @foreach($course->trainers as $trainer)
+                                        {{ $trainer->name }}
+                                @endforeach</dd>
 
-                            <h5 class="text-muted mt-4 mb-3">Description</h5>
-                            <p class="card-text">{{ $course->description }}</p>
+                                <dt class="col-sm-3">Starttermin:</dt>
+                                <dd class="col-sm-9">{{ Carbon\Carbon::parse($course->startDate)->format('l') }} - {{ Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}
+                                    at {{ Carbon\Carbon::parse($course->startTime)->format('H:i') }}</dd>
+
+                                <dt class="col-sm-3">Preis:</dt>
+                                <dd class="col-sm-9">{{ $course->price }}€</dd>
+
+                                <dt class="col-sm-3">Notizen:</dt>
+                                <dd class="col-sm-9">{{ $course->notes }}</dd>
+
+                                <dt class="col-sm-3">Beschreibung:</dt>
+                                <dd class="col-sm-9">{{ $course->description }}</dd>
+                            </dl>
                         </div>
                         <div class="col-md-4">
-                            <div class="bg-light p-3 rounded text-center">
-                                <h5 class="text-primary mb-3">Available Spots</h5>
-                                <p class="display-4 fw-bold">{{ $course->available_spots }}</p>
+                            <div class="p-3 rounded text-center">
+                                <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+
                             </div>
+                            <div class="mt-2">
+                                <span class="badge {{ $course->isFullyBooked() ? 'bg-danger' : 'bg-success' }}">
+                                    {{ $course->available_spots }} Plätze verfügbar
+                                </span>
                             <!-- Button trigger modal -->
                             @if(!Auth::check())
                                 <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Register Now</button>

@@ -44,7 +44,7 @@
                             @if(!Auth::check())
                                 <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrieren</button>
                             @elseif(!Auth::user()->customerCourses->contains($course->id))
-                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrieren</button>
+                                <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Anmelden</button>
                             @else
                                 <button type="button" class="btn btn-primary btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>Bereits Registriert</button>
 

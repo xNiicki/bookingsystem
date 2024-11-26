@@ -58,9 +58,7 @@
                                     </button>
                                 </div>
                                 <div class="course-image ml-3">
-                                    <img src="{{ asset('assets/' . $course->picture) }}" alt="{{ $course->name }}"
-                                         class="img-fluid rounded"
-                                         style="width: 150px; height: 150px; object-fit: cover;">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
                                 </div>
                             </div>
                         </div>

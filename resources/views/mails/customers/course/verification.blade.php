@@ -23,7 +23,7 @@
 
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
         <tr>
-            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">KursID:</th>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Kurs ID:</th>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->courseID }}</td>
         </tr>
         <tr>

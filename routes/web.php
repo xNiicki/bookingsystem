@@ -47,4 +47,5 @@ Route::prefix('admin')->middleware(['check.user.type:admin'])->group(function ()
     Route::get('/courses', AdminCourses::class)->name('admin.courses');
     Route::get('/course/{id}', AdminCourse::class)->name('admin.course');
     Route::get('/add-courses', AdminAddCourse::class)->name('admin.addCourse');
+    Route::get('/add-trainer', \App\Livewire\Admin\AddTrainer::class)->name('admin.addTrainer');
 });

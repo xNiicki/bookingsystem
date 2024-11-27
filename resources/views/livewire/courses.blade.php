@@ -15,13 +15,14 @@
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach
                     </select>
-                    <input type="text" id="copyText" class="d-none" value="{{$selectedType}}"></input>
+                </div>
+                <div class="mb-3">
                     <div x-data="{ copied: false }">
                         <button
                             @click="navigator.clipboard.writeText('booking.janine-lorenz.de/?type={{$selectedType}}').then(() => { copied = true; setTimeout(() => copied = false, 2000); })"
                             class="btn btn-primary"
                         >
-                            Copy Text
+                            Filterlink kopieren
                         </button>
                         <span x-show="copied" class="text-green-500">Copied!</span>
                     </div>

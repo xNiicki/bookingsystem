@@ -28,11 +28,11 @@
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Startdatum:</th>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->startDate->format('F j, Y') }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ \Carbon\Carbon::parse($course->startDate)->format('d.m.Y') }}</td>
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Startzeit:</th>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->startTime->format('g:i A') }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ \Carbon\Carbon::parse($course->startTime)->format('H:i') }} Uhr</td>
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Tag:</th>

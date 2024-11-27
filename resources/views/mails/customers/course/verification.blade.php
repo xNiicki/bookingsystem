@@ -19,7 +19,7 @@
 
     <p>Vielen Dank, dass du einen Kurs bei uns gebucht hast. Deine Buchung wurde bestätigt. Hier sind die Details zu deiner Buchung:</p>
 
-    <h2 style="color: #2c3e50;">{{ $course->name }}</h2>
+    <h3 style="color: #2c3e50;">{{ $course->name }}</h3>
 
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
         <tr>

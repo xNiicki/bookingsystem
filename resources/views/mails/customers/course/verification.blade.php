@@ -44,7 +44,7 @@
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Ort:</th>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->location }} €</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->location }}</td>
         </tr>
     </table>
 
@@ -65,12 +65,12 @@
 
     <a href="mailto:info@janine-lorenz.de" style="display: inline-block; background-color: #3498db; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px;">Send Email</a>
 
-    <p style="margin-bottom: 20px;">Viele Grüße,
+    <p style="margin-bottom: 20px; margin-top: 50px">Viele Grüße,
         <br>
         Janine Lorenz
-<br>
+<br> <br>
         Diese Email kommt von:
-<br>
+<br> <br>
         Janine Lorenz
         <br>
         Saturnstraße 2

@@ -19,6 +19,10 @@
 
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
         <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">KursID:</th>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->courseID }}</td>
+        </tr>
+        <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Startdatum:</th>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->startDate->format('F j, Y') }}</td>
         </tr>
@@ -38,15 +42,17 @@
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Preis:</th>
             <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ number_format($course->price, 2, '.', ',') }} €</td>
         </tr>
+        <tr>
+            <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Ort:</th>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->location }} €</td>
+        </tr>
     </table>
 
     <h3 style="color: #2c3e50;">Kursbeschreibung:</h3>
     <p style="margin-bottom: 20px;">{{ $course->description }}</p>
 
     <h3 style="color: #2c3e50;">Zahlungsinformation</h3>
-    <p style="margin-bottom: 20px;">Zahlungsinformationen
-
-        Die Zahlung erfolgt via Überweisung. Bitte überweise den Betrag auf unser Konto mit der IBAN DE33 1001 1001 2621 3408 00 und BIC NTSBDEB1XXX. Nutze die Kurs ID: "" als Betreff der Überweisung.</p>
+    <p style="margin-bottom: 20px;">Die Zahlung erfolgt via Überweisung. Bitte überweise den Betrag auf unser Konto mit der IBAN DE33 1001 1001 2621 3408 00 und BIC NTSBDEB1XXX. Nutze die Kurs ID: "{{$course->courseID}}" als Betreff der Überweisung.</p>
 
     <h3 style="color: #2c3e50;">Deine Informationen:</h3>
     <ul style="list-style-type: none; padding: 0;">

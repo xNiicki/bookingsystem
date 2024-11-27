@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -34,6 +35,7 @@ class CourseBookingConfirmation extends Mailable
 
     public function content()
     {
+        Carbon::setLocale('de');
         return new Content(
             view: 'mails.customers.course.verification',
         );

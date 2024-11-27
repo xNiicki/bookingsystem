@@ -11,6 +11,10 @@
 </header>
 
 <main style="padding: 20px;">
+    @php
+        \Carbon\Carbon::setLocale('de');
+        $day = \Carbon\Carbon::parse($course->startDate)->isoFormat('dddd');
+    @endphp
     <p>Liebe/Lieber {{ $customer->name }},</p>
 
     <p>Vielen Dank, dass du einen Kurs bei uns gebucht hast. Deine Buchung wurde bestätigt. Hier sind die Details zu deiner Buchung:</p>
@@ -32,7 +36,7 @@
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Tag:</th>
-            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $course->dayName }}</td>
+            <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ $day }}</td>
         </tr>
         <tr>
             <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Termine:</th>

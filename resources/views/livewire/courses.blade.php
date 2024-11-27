@@ -9,12 +9,22 @@
 
                 <div class="mb-3">
                     <label class="form-label">Kursart</label>
-                    <select wire:model.live="type" class="form-select">
+                    <select wire:model.live="selectedType" class="form-select">
                         <option value="">Alle Arten</option>
                         @foreach($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach
                     </select>
+                    <input type="text" id="copyText" class="d-none" value="{{$selectedType}}"></input>
+                    <div x-data="{ copied: false }">
+                        <button
+                            @click="navigator.clipboard.writeText('booking.janine-lorenz.de/?type={{$selectedType}}').then(() => { copied = true; setTimeout(() => copied = false, 2000); })"
+                            class="btn btn-primary"
+                        >
+                            Copy Text
+                        </button>
+                        <span x-show="copied" class="text-green-500">Copied!</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +68,9 @@
                                     </button>
                                 </div>
                                 <div class="course-image ml-3">
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($course->picture) }}" alt="{{ $course->name }}" class="img-fluid rounded" style="width: 150px; height: 150px; object-fit: cover;">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($course->picture) }}"
+                                         alt="{{ $course->name }}" class="img-fluid rounded"
+                                         style="width: 150px; height: 150px; object-fit: cover;">
                                 </div>
                             </div>
                         </div>
